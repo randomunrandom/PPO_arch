@@ -44,15 +44,23 @@ class View(Observer):
         print(f"|-{'-'*(width_per_cell*3 + 6)}-|")
         print()
         print("to change variable type it's name and new value")
+        print("to view variable type it's name")
         
         try:
             inp: List[Any] = input().split(' ')
         except KeyboardInterrupt:
             print('\nexiting')
             exit()
-        if len(inp) != 2:
-            print('invalid foramt')
-        else:
+        if len(inp) == 1:
+            name: str = str(inp[0])
+            if name == 'a':
+                print(self.model.a)
+            elif name == 'b':
+                print(self.model.b)
+            else:
+                print("unknown name")
+                self(self.width)
+        elif len(inp) == 2:
             name: str = str(inp[0])
             try:
                 new_val: float = float(inp[1])
@@ -66,6 +74,8 @@ class View(Observer):
             else:
                 print("unknown name")
                 self(self.width)
+        else:
+            print('invalid foramt')
 
     def model_changed(self):
         self.a: str = str(self.model.a)
