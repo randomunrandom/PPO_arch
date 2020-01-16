@@ -2,13 +2,13 @@
 different architectures for my course in PPO(Applications and Software)
 
 1. [MVC(Model-View-Controller)][mvc_wiki]\
-    ![diagram of MVC][mvc_img]
+    ![diagram of MVC][mvc_img]\
     sources:
     * [wiki][mvc_wiki]
     * [medium][mvc_link_1]
     * [tutorials point][mvc_link_2]
 2. [MVP(Model-View-Presenter)][mvp_wiki]\
-    ![diagram of MVP][mvp_img]
+    ![diagram of MVP][mvp_img]\
     sources:
     * [wiki][mvp_wiki]
     * [medium][mvp_link_1]
