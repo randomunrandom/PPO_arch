@@ -1,5 +1,5 @@
-from .base_controller import BaseController
-from .model import Model
+from base_controller import BaseController
+from model import Model
 
 
 class Controller(BaseController):
@@ -10,7 +10,7 @@ class Controller(BaseController):
     def __init__(self, model: Model):
         super().__init__()
         self.model: Model = model
-        self.model.add_observer(self)
+        self.model.add_controller(self)
 
     def model_changed(self):
         a: float = self.model.a

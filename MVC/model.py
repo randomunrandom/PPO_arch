@@ -1,6 +1,6 @@
 from typing import Any, List, NoReturn
 
-from .base_controller import BaseController
+from base_controller import BaseController
 
 
 class Model:
@@ -21,8 +21,8 @@ class Model:
 
     @a.setter
     def a(self, val: float):
-        self._a_: float = val
-        self.upd_observers()
+        self._a_ = val
+        self.upd_controller()
 
     @property
     def b(self) -> float:
@@ -30,8 +30,8 @@ class Model:
 
     @b.setter
     def b(self, value: float):
-        self._b_: float = value
-        self.upd_observers()
+        self._b_ = value
+        self.upd_controller()
 
     @property
     def sum(self) -> float:
@@ -39,17 +39,17 @@ class Model:
 
     @sum.setter
     def sum(self, value: float):
-        self._sum_: float = value
-        self.upd_observers()
+        self._sum_ = value
+        self.upd_controller()
 
-    def add_observer(self, observer: BaseController):
-        if not isinstance(observer, BaseController):
-            raise ValueError("observer should inherit from Observer class")
-        self._controllers_.append(observer)
+    def add_controller(self, controller: BaseController):
+        if not isinstance(controller, BaseController):
+            raise ValueError("controller should inherit from Controller class")
+        self._controllers_.append(controller)
 
-    def del_observer(self, observer: BaseController):
-        self._controllers_.remove(observer)
+    def del_controller(self, controller: BaseController):
+        self._controllers_.remove(controller)
 
-    def upd_observers(self):
+    def upd_controller(self):
         for o in self._controllers_:
             o.model_changed()

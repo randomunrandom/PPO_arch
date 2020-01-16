@@ -1,7 +1,7 @@
 from typing import Any, List
 
-from .base_controller import BaseController
-from .model import Model
+from base_controller import BaseController
+from model import Model
 
 
 class View(BaseController):
@@ -14,7 +14,7 @@ class View(BaseController):
         self.width: int = 100
 
         self.model: Model = model
-        self.model.add_observer(self)
+        self.model.add_controller(self)
         self.a: str = str(self.model.a)
         self.b: str = str(self.model.b)
         self.sum: str = str(self.model.sum)

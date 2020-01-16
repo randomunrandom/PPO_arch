@@ -1,8 +1,8 @@
 #!/usr/bin/env python3.7
 
-from .model import Model
-from .controller import Controller
-from .view import View
+from controller import Controller
+from model import Model
+from view import View
 
 m = Model()
 c = Controller(m)
