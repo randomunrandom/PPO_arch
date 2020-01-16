@@ -3,6 +3,9 @@ from model import Model
 
 
 class View(Observer):
+    """
+    text-based terminal viewer and editor for given model
+    """
     def __init__(self, model: Model):
         super().__init__()
         self.width: int = 100
@@ -47,7 +50,11 @@ class View(Observer):
         print("to view variable type it's name")
         
         try:
-            inp: List[Any] = input().split(' ')
+            raw_inp: str = input()
+            try:
+                inp: List[Any] = raw_inp.split(' ')
+            except EOFError:
+                inp: List[Any] = [raw_inp]
         except KeyboardInterrupt:
             print('\nexiting')
             exit()
@@ -57,9 +64,11 @@ class View(Observer):
                 print(self.model.a)
             elif name == 'b':
                 print(self.model.b)
+            elif name == 'sum':
+                print(self.model.sum)
             else:
                 print("unknown name")
-                self(self.width)
+            self(self.width)
         elif len(inp) == 2:
             name: str = str(inp[0])
             try:

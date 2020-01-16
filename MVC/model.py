@@ -4,8 +4,7 @@ from observer import Observer
 
 class Model:
     """
-    Model with interface for storing data and
-        communicating with observers
+    model for storing data and updating observers
     """
 
     def __init__(self):

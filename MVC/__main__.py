@@ -7,10 +7,7 @@ from controller import Controller
 
 m = Model()
 c = Controller(m)
-m.add_observer(c)
 v = View(m)
-m.add_observer(v)
-
 
 if __name__ == "__main__":
     v(30)

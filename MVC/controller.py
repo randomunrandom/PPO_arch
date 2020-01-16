@@ -3,6 +3,10 @@ from model import Model
 
 
 class Controller(Observer):
+    """
+    controller for updating sum
+    """
+
     def __init__(self, model: Model):
         super().__init__()
         self.model: Model = model

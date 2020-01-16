@@ -3,7 +3,7 @@ from abc import ABCMeta, abstractmethod
 
 class Observer(metaclass=ABCMeta):
     """
-    Abstract metaclass for all observers
+    abstract metaclass for all observers
     * https://docs.python.org/3/library/abc.html
     """
 
