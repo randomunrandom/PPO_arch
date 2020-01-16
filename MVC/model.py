@@ -22,7 +22,6 @@ class Model:
     @a.setter
     def a(self, val: float):
         self._a_: float = val
-        # self._sum_: float = self._a_ + self._b_
         self.notify_observers()
 
     @property
@@ -32,7 +31,6 @@ class Model:
     @b.setter
     def b(self, value: float):
         self._b_: float = value
-        # self._sum_: float = self._a_ + self._b_
         self.notify_observers()
 
     @property
@@ -42,12 +40,11 @@ class Model:
     @sum.setter
     def sum(self, value: float):
         self._sum_: float = value
-        # self._sum_: float = self._a_ + self._b_
         self.notify_observers()
 
     def add_observer(self, observer: Observer):
-        # if not isinstance(observer, Observer):
-        #     raise ValueError("observer should inherit from Observer class")
+        if not isinstance(observer, Observer):
+            raise ValueError("observer should inherit from Observer class")
         self._observers_.append(observer)
 
     def remove_observer(self, observer: Observer):
