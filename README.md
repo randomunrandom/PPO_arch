@@ -1,4 +1,5 @@
-# PPO_arch
+PPO_arch
+==========
 different architectures for my course in PPO(Applications and Software)
 
 1. [MVC(Model-View-Controller)][mvc_wiki]\
@@ -14,9 +15,14 @@ different architectures for my course in PPO(Applications and Software)
     * [medium][mvp_link_1]
     * [tutsplus][mvp_link_2]
 
-additional info
+Additional info
 ---------------
-* simple example with differences: [medium][additional_info]
+* simple example with differences between 2 architectures: [medium][additional_info]
+
+Usage
+-----
+* MVC: `python3 MVC/__main__.py`
+* MVP: `python3 MVP/__main__.py`
 
 [mvc_wiki]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 [mvc_img]: https://upload.wikimedia.org/wikipedia/commons/a/a0/MVC-Process.svg "Diagram of MVC"
