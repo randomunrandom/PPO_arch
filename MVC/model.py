@@ -1,5 +1,6 @@
-from typing import List, Any, NoReturn
-from observer import Observer
+from typing import Any, List, NoReturn
+
+from .base_controller import BaseController
 
 
 class Model:
@@ -12,7 +13,7 @@ class Model:
         self._b_: float = 0
         self._sum_: float = 0
 
-        self._observers_: List[Observer] = []
+        self._controllers_: List[BaseController] = []
 
     @property
     def a(self) -> float:
@@ -21,7 +22,7 @@ class Model:
     @a.setter
     def a(self, val: float):
         self._a_: float = val
-        self.notify_observers()
+        self.upd_observers()
 
     @property
     def b(self) -> float:
@@ -30,25 +31,25 @@ class Model:
     @b.setter
     def b(self, value: float):
         self._b_: float = value
-        self.notify_observers()
+        self.upd_observers()
 
     @property
     def sum(self) -> float:
         return self._sum_
-    
+
     @sum.setter
     def sum(self, value: float):
         self._sum_: float = value
-        self.notify_observers()
+        self.upd_observers()
 
-    def add_observer(self, observer: Observer):
-        if not isinstance(observer, Observer):
+    def add_observer(self, observer: BaseController):
+        if not isinstance(observer, BaseController):
             raise ValueError("observer should inherit from Observer class")
-        self._observers_.append(observer)
+        self._controllers_.append(observer)
 
-    def remove_observer(self, observer: Observer):
-        self._observers_.remove(observer)
+    def del_observer(self, observer: BaseController):
+        self._controllers_.remove(observer)
 
-    def notify_observers(self):
-        for x in self._observers_:
-            x.model_changed()
+    def upd_observers(self):
+        for o in self._controllers_:
+            o.model_changed()

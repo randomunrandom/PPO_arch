@@ -1,11 +1,14 @@
-from observer import Observer
-from model import Model
+from typing import Any, List
+
+from .base_controller import BaseController
+from .model import Model
 
 
-class View(Observer):
+class View(BaseController):
     """
     text-based terminal viewer and editor for given model
     """
+
     def __init__(self, model: Model):
         super().__init__()
         self.width: int = 100
@@ -18,29 +21,31 @@ class View(Observer):
 
     def __call__(self, width: int = 100):
         self.width = width
-        width_per_cell: int = (self.width-10)//3
+        width_per_cell: int = (self.width - 10) // 3
         print(f"|-{'-'*(width_per_cell*3 + 6)}-|")
-        print(f"| a{' '*(width_per_cell-1)} | b{' '*(width_per_cell-1)} | sum{' '*(width_per_cell-3)} |")
+        print(
+            f"| a{' '*(width_per_cell-1)} | b{' '*(width_per_cell-1)} | sum{' '*(width_per_cell-3)} |"
+        )
         print(f"|-{'-'*(width_per_cell*3 + 6)}-|")
         line = "| "
         if len(self.a) < width_per_cell:
-            line += self.a+(" "*(width_per_cell-len(self.a)))
+            line += self.a + (" " * (width_per_cell - len(self.a)))
         else:
-            line += self.a[:width_per_cell - 3] + "..."
-        
+            line += self.a[: width_per_cell - 3] + "..."
+
         line += " | "
 
         if len(self.b) < width_per_cell:
-            line += self.b+(" "*(width_per_cell-len(self.b)))
+            line += self.b + (" " * (width_per_cell - len(self.b)))
         else:
-            line += self.b[:width_per_cell - 3] + "..."
-        
+            line += self.b[: width_per_cell - 3] + "..."
+
         line += " | "
 
         if len(self.sum) < width_per_cell:
-            line += self.sum+(" "*(width_per_cell-len(self.sum)))
+            line += self.sum + (" " * (width_per_cell - len(self.sum)))
         else:
-            line += self.sum[:width_per_cell - 3] + "..."
+            line += self.sum[: width_per_cell - 3] + "..."
         line += " |"
 
         print(line)
@@ -48,23 +53,23 @@ class View(Observer):
         print()
         print("to change variable type it's name and new value")
         print("to view variable type it's name")
-        
+
         try:
             raw_inp: str = input()
             try:
-                inp: List[Any] = raw_inp.split(' ')
+                inp: List[Any] = raw_inp.split(" ")
             except EOFError:
-                inp: List[Any] = [raw_inp]
+                inp = [raw_inp]
         except KeyboardInterrupt:
-            print('\nexiting')
+            print("\nexiting")
             exit()
         if len(inp) == 1:
             name: str = str(inp[0])
-            if name == 'a':
+            if name == "a":
                 print(self.model.a)
-            elif name == 'b':
+            elif name == "b":
                 print(self.model.b)
-            elif name == 'sum':
+            elif name == "sum":
                 print(self.model.sum)
             else:
                 print("unknown name")
@@ -76,15 +81,16 @@ class View(Observer):
             except ValueError:
                 print("wrong value")
                 self(self.width)
-            if name == 'a':
+
+            if name == "a":
                 self.model.a = new_val
-            elif name == 'b':
+            elif name == "b":
                 self.model.b = new_val
             else:
                 print("unknown name")
                 self(self.width)
         else:
-            print('invalid foramt')
+            print("invalid foramt")
 
     def model_changed(self):
         self.a: str = str(self.model.a)

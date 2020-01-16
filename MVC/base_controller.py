@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class Observer(metaclass=ABCMeta):
+class BaseController(metaclass=ABCMeta):
     """
     abstract metaclass for all observers
     * https://docs.python.org/3/library/abc.html

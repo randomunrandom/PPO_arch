@@ -1,8 +1,8 @@
-from observer import Observer
-from model import Model
+from .base_controller import BaseController
+from .model import Model
 
 
-class Controller(Observer):
+class Controller(BaseController):
     """
     controller for updating sum
     """
